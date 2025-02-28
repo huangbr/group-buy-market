@@ -1,0 +1,1 @@
+package edu.jnu.domain.activity.service;

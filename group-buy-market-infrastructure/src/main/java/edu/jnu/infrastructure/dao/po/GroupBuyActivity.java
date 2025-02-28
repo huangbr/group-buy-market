@@ -10,6 +10,10 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+/**
+ * 拼团活动
+ */
+
 @Data
 @Builder
 @AllArgsConstructor
