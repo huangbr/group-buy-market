@@ -78,9 +78,9 @@ public class GroupBuyActivityDiscountVO {
         private String discountDesc;
 
         /** 折扣类型（0:base、1:tag） */
-        private Byte discountType;
+        private DisconutTypeEnum discountType;
 
-        /** 营销优惠计划（ZJ:直减、MJ:满减、N元购） */
+        /** 营销优惠计划（ZJ:直减、MJ:满减、N元购、ZK:打折） */
         private String marketPlan;
 
         /** 营销优惠表达式 */

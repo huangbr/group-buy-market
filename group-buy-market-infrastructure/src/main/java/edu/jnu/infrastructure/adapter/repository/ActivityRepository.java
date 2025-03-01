@@ -2,6 +2,7 @@ package edu.jnu.infrastructure.adapter.repository;
 
 import com.alibaba.fastjson.JSON;
 import edu.jnu.domain.activity.adapter.repository.IActivityRepository;
+import edu.jnu.domain.activity.model.valobj.DisconutTypeEnum;
 import edu.jnu.domain.activity.model.valobj.GroupBuyActivityDiscountVO;
 import edu.jnu.domain.activity.model.valobj.SkuVO;
 import edu.jnu.infrastructure.dao.IGroupBuyActivityDao;
@@ -40,7 +41,7 @@ public class ActivityRepository implements IActivityRepository {
         GroupBuyActivityDiscountVO.GroupBuyDiscount groupBuyDiscount = GroupBuyActivityDiscountVO.GroupBuyDiscount.builder()
                 .discountName(groupBuyDiscountRes.getDiscountName())
                 .discountDesc(groupBuyDiscountRes.getDiscountDesc())
-                .discountType(groupBuyDiscountRes.getDiscountType())
+                .discountType(DisconutTypeEnum.get(groupBuyDiscountRes.getDiscountType()))
                 .marketPlan(groupBuyDiscountRes.getMarketPlan())
                 .marketExpr(groupBuyDiscountRes.getMarketExpr())
                 .tagId(groupBuyDiscountRes.getTagId())
