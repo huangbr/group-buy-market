@@ -1,6 +1,7 @@
 package edu.jnu.domain.activity.adapter.repository;
 
 import edu.jnu.domain.activity.model.valobj.GroupBuyActivityDiscountVO;
+import edu.jnu.domain.activity.model.valobj.SCSkuActivityVO;
 import edu.jnu.domain.activity.model.valobj.SkuVO;
 
 /**
@@ -8,9 +9,13 @@ import edu.jnu.domain.activity.model.valobj.SkuVO;
  */
 public interface IActivityRepository {
     // 查询活动折扣
-    GroupBuyActivityDiscountVO queryGroupBuyActivityDiscountVO(String source, String channel);
+    GroupBuyActivityDiscountVO queryGroupBuyActivityDiscountVO(Long activityId);
 
     // 查询Sku
     SkuVO querySkuByGoodsId(String goodsId);
+
+    // 查询活动
+    SCSkuActivityVO querySCSkuActivityBySCGoodsId(String source, String channel, String goodsId);
+
 
 }
