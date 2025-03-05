@@ -16,6 +16,11 @@ import org.springframework.stereotype.Repository;
 import javax.annotation.Resource;
 import java.security.acl.Group;
 
+
+/**
+ * 活动仓储：实现类中进行dao操作
+ */
+
 @Repository
 public class ActivityRepository implements IActivityRepository {
 
