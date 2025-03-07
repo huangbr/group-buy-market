@@ -17,5 +17,14 @@ public interface IActivityRepository {
     // 查询活动
     SCSkuActivityVO querySCSkuActivityBySCGoodsId(String source, String channel, String goodsId);
 
+    // 查询用户是否在人群标签范围内
+    boolean isTagCrowdRange(String tagId, String userId);
+
+    // 查询是否降级
+    boolean downgradeSwitch();
+
+    // 查询是否切量
+    boolean cutRange(String userId);
+
 
 }

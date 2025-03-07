@@ -44,7 +44,7 @@ public class GroupBuyActivity {
     private Date endTime;
     /** 人群标签规则标识 */
     private String tagId;
-    /** 人群标签规则范围 */
+    /** 人群标签规则范围（三种状态码：1不可见不可参与、2可见不可参与、3可见可参与） */
     private String tagScope;
     /** 创建时间 */
     private Date createTime;

@@ -14,6 +14,9 @@ import edu.jnu.infrastructure.dao.po.GroupBuyActivity;
 import edu.jnu.infrastructure.dao.po.GroupBuyDiscount;
 import edu.jnu.infrastructure.dao.po.SCSkuActivity;
 import edu.jnu.infrastructure.dao.po.Sku;
+import edu.jnu.infrastructure.dcc.DCCService;
+import edu.jnu.infrastructure.redis.IRedisService;
+import org.redisson.api.RBitSet;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -35,6 +38,11 @@ public class ActivityRepository implements IActivityRepository {
     private ISkuDao skuDao;
     @Resource
     private ISCSkuActivityDao scSKuActivityDao;
+    @Resource
+    private IRedisService redisService;
+    @Resource
+    private DCCService dccService;
+
 
     @Override
     public GroupBuyActivityDiscountVO queryGroupBuyActivityDiscountVO(Long activityId) {
@@ -104,4 +112,26 @@ public class ActivityRepository implements IActivityRepository {
                 .goodsId(scSkuActivityRes.getGoodsId())
                 .build();
     }
+
+    @Override
+    public boolean isTagCrowdRange(String tagId, String userId){
+        RBitSet bitSet = redisService.getBitSet(tagId);
+        if(!bitSet.isExists()){
+            // 该tag不产生限制
+            return true;
+        }
+        return bitSet.get(redisService.getIndexFromUserId(userId));
+    }
+
+    @Override
+    public boolean downgradeSwitch() {
+        return dccService.isDowngradeSwitch();
+    }
+
+    @Override
+    public boolean cutRange(String userId) {
+        return dccService.isCutRange(userId);
+    }
+
+
 }

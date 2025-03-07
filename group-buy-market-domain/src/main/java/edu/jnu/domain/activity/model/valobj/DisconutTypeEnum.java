@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
- * 折扣优惠类型
+ * 枚举：折扣优惠类型
  */
 @Getter
 @AllArgsConstructor

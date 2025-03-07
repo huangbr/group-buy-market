@@ -1,9 +1,11 @@
 package edu.jnu.domain.activity.model.valobj;
 
+import edu.jnu.types.common.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -50,8 +52,9 @@ public class GroupBuyActivityDiscountVO {
     /** 人群标签规则标识 */
     private String tagId;
 
-    /** 人群标签规则范围（多选；1可见限制、2参与限制） */
+    /** 人群标签规则范围（三种状态码：1不可见不可参与、2可见不可参与、3可见可参与） */
     private String tagScope;
+
 
     /** 拼团折扣 */
     @Getter
@@ -80,4 +83,39 @@ public class GroupBuyActivityDiscountVO {
         /** 人群标签，特定优惠限定 */
         private String tagId;
     }
+
+
+    // 改进：查询活动的可见性、可参与性
+
+
+
+    //    /** 活动可见性查询 */
+//    public boolean isVisible(){
+//        // tagScope字段为空，表示没有人群标签限制，即所有用户对活动可见
+//        if(StringUtils.isBlank(this.tagScope)){
+//            return TagScopeEnumVO.VISIBLE.isAllow();
+//        }
+//        String[] split = this.tagScope.split(Constants.SPLIT);
+//        if(split.length ==2 && split[0].equals("1")){
+//            // 如果配置了tagScope，且配置了可见性字段 - 1，则默认设置为不可见
+//            return TagScopeEnumVO.VISIBLE.isRefuse();
+//        }
+//
+//        return TagScopeEnumVO.VISIBLE.isAllow();
+//    }
+//
+//    /** 活动可参与性查询 */
+//    public boolean isEnable(){
+//        // tagScope字段为空，表示没有人群标签限制，即所有用户可参与此活动
+//        if(StringUtils.isBlank(this.tagScope)){
+//            return TagScopeEnumVO.ENABLE.isAllow();
+//        }
+//        String[] split = this.tagScope.split(Constants.SPLIT);
+//        if(split.length ==2 && split[1].equals("2")){
+//            // 如果配置了tagScope，且配置了可参与性字段 - 2，则默认设置为不可参与
+//            return TagScopeEnumVO.ENABLE.isRefuse();
+//        }
+//
+//        return TagScopeEnumVO.ENABLE.isAllow();
+//    }
 }
