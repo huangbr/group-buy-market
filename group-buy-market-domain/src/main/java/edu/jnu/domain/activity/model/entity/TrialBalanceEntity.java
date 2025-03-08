@@ -1,5 +1,6 @@
 package edu.jnu.domain.activity.model.entity;
 
+import edu.jnu.domain.activity.model.valobj.GroupBuyActivityDiscountVO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +10,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * 试算结果实体对象
+ * 试算结果实体对象：给用户展示拼团可获得的优惠信息
  */
 
 @Data
@@ -36,5 +37,8 @@ public class TrialBalanceEntity {
     private Boolean isVisible;
     /** 是否可参与进团 */
     private Boolean isEnable;
+
+    /** 活动配置信息 */
+    private GroupBuyActivityDiscountVO groupBuyActivityDiscountVO;
 
 }

@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * 枚举：活动人群标签作用域，共三种状态：用户不可见不可参与、用户可见不可参与、用户可见可参与
+ * 枚举：活动人群标签作用域，共三种状态：1用户不可见不可参与、2用户可见不可参与、3用户可见可参与
  */
 
 @Getter
@@ -14,9 +14,9 @@ import org.apache.commons.lang3.StringUtils;
 @NoArgsConstructor
 public enum TagScopeEnumVO {
 
-    INVISIBLE_DISABLE("0", "用户不可见不可参与"),
-    VISIBLE_DISABLE("1", "用户可见不可参与"),
-    VISIBLE_ENABLE("2", "用户可见可参与");
+    INVISIBLE_DISABLE("1", "用户不可见不可参与"),
+    VISIBLE_DISABLE("2", "用户可见不可参与"),
+    VISIBLE_ENABLE("3", "用户可见可参与");
 
     private String code;
     private String desc;

@@ -1,4 +1,4 @@
-package edu.jnu.infrastructure.dao.po;
+package edu.jnu.domain.trade.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,19 +6,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
- * 商品信息
+ * 支付优惠实体对象
  */
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Sku {
-
-    /** 自增 */
-    private Long id;
+public class PayDiscountEntity {
     /** 来源 */
     private String source;
     /** 渠道 */
@@ -29,9 +26,10 @@ public class Sku {
     private String goodsName;
     /** 原始价格 */
     private BigDecimal originalPrice;
-    /** 创建时间 */
-    private Date createTime;
-    /** 更新时间 */
-    private Date updateTime;
+    /** 折扣金额 */
+    private BigDecimal deductionPrice;
+    /** 外部交易单号 - 确保外部调用的幂等性 */
+    private String outTradeNo;
+
 
 }
