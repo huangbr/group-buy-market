@@ -1878,3 +1878,82 @@ java.lang.NullPointerException: null
 25-03-08.17:15:22.796 [main            ] INFO  MarketTradeControllerTest - 测试结果 req:{"activityId":100123,"channel":"c01","goodsId":"9890001","outTradeNo":"625742671599","source":"s01","teamId":"91405120","userId":"xiaofuge"} res:{"code":"E0006","info":"拼团组队完结，锁单量已达成，锁单失败"}
 25-03-08.17:15:22.816 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
 25-03-08.17:15:23.508 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-03-08.19:38:16.003 [main            ] INFO  Link01Test             - Starting Link01Test using Java 1.8.0_311 on LAPTOP-188ICRL6 with PID 28204 (started by huangbr in E:\Java\group-buy-market\group-buy-market-app)
+25-03-08.19:38:16.003 [main            ] INFO  Link01Test             - The following 1 profile is active: "dev"
+25-03-08.19:38:16.689 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-03-08.19:38:16.691 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-03-08.19:38:16.731 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 28 ms. Found 0 Redis repository interfaces.
+25-03-08.19:38:17.009 [main            ] INFO  PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redisClientConfig' of type [edu.jnu.config.RedisClientConfig$$EnhancerBySpringCGLIB$$b80dbee5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+25-03-08.19:38:17.296 [main            ] INFO  PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redis.sdk.config-edu.jnu.config.RedisClientConfigProperties' of type [edu.jnu.config.RedisClientConfigProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+25-03-08.19:38:17.895 [main            ] INFO  Version                - Redisson 3.26.0
+25-03-08.19:38:18.583 [redisson-netty-1-6] INFO  ConnectionsHolder      - 1 connections initialized for 117.72.54.141/117.72.54.141:16379
+25-03-08.19:38:19.230 [redisson-netty-1-13] INFO  ConnectionsHolder      - 5 connections initialized for 117.72.54.141/117.72.54.141:16379
+25-03-08.19:38:19.268 [main            ] INFO  PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redissonCLient' of type [org.redisson.Redisson] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+25-03-08.19:38:21.690 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-03-08.19:38:21.752 [main            ] INFO  Link01Test             - Started Link01Test in 6.073 seconds (JVM running for 6.776)
+25-03-08.19:38:22.020 [main            ] INFO  RuleLogic101           - link model01 RuleLogic101
+25-03-08.19:38:22.021 [main            ] INFO  RuleLogic102           - link model01 RuleLogic102
+25-03-08.19:38:22.166 [main            ] INFO  Link01Test             - 测试结果:"link model01 单实例链"
+25-03-08.20:46:51.211 [main            ] INFO  Link02Test             - Starting Link02Test using Java 1.8.0_311 on LAPTOP-188ICRL6 with PID 24624 (started by huangbr in E:\Java\group-buy-market\group-buy-market-app)
+25-03-08.20:46:51.212 [main            ] INFO  Link02Test             - The following 1 profile is active: "dev"
+25-03-08.20:46:51.971 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-03-08.20:46:51.975 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-03-08.20:46:52.028 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 38 ms. Found 0 Redis repository interfaces.
+25-03-08.20:46:52.302 [main            ] INFO  PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redisClientConfig' of type [edu.jnu.config.RedisClientConfig$$EnhancerBySpringCGLIB$$2b8c95fd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+25-03-08.20:46:52.574 [main            ] INFO  PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redis.sdk.config-edu.jnu.config.RedisClientConfigProperties' of type [edu.jnu.config.RedisClientConfigProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+25-03-08.20:46:53.100 [main            ] INFO  Version                - Redisson 3.26.0
+25-03-08.20:46:53.778 [redisson-netty-1-4] INFO  ConnectionsHolder      - 1 connections initialized for 117.72.54.141/117.72.54.141:16379
+25-03-08.20:46:54.499 [redisson-netty-1-13] INFO  ConnectionsHolder      - 5 connections initialized for 117.72.54.141/117.72.54.141:16379
+25-03-08.20:46:54.534 [main            ] INFO  PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redissonCLient' of type [org.redisson.Redisson] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+25-03-08.20:46:57.007 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-03-08.20:46:57.064 [main            ] INFO  Link02Test             - Started Link02Test in 6.181 seconds (JVM running for 6.935)
+25-03-08.20:46:57.278 [main            ] INFO  RuleLogic201           - link model02 RuleLogic201
+25-03-08.20:46:57.278 [main            ] INFO  RuleLogic202           - link model02 RuleLogic202
+25-03-08.20:46:57.436 [main            ] INFO  Link02Test             - 测试结果:{"age":"hi 小傅哥！"}
+25-03-08.20:47:06.200 [main            ] INFO  Link02Test             - Starting Link02Test using Java 1.8.0_311 on LAPTOP-188ICRL6 with PID 26060 (started by huangbr in E:\Java\group-buy-market\group-buy-market-app)
+25-03-08.20:47:06.201 [main            ] INFO  Link02Test             - The following 1 profile is active: "dev"
+25-03-08.20:47:06.871 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-03-08.20:47:06.874 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-03-08.20:47:06.911 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 26 ms. Found 0 Redis repository interfaces.
+25-03-08.20:47:07.182 [main            ] INFO  PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redisClientConfig' of type [edu.jnu.config.RedisClientConfig$$EnhancerBySpringCGLIB$$34bce53e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+25-03-08.20:47:07.460 [main            ] INFO  PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redis.sdk.config-edu.jnu.config.RedisClientConfigProperties' of type [edu.jnu.config.RedisClientConfigProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+25-03-08.20:47:07.979 [main            ] INFO  Version                - Redisson 3.26.0
+25-03-08.20:47:08.628 [redisson-netty-1-4] INFO  ConnectionsHolder      - 1 connections initialized for 117.72.54.141/117.72.54.141:16379
+25-03-08.20:47:09.490 [redisson-netty-1-13] INFO  ConnectionsHolder      - 5 connections initialized for 117.72.54.141/117.72.54.141:16379
+25-03-08.20:47:09.525 [main            ] INFO  PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redissonCLient' of type [org.redisson.Redisson] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+25-03-08.20:47:11.864 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-03-08.20:47:11.916 [main            ] INFO  Link02Test             - Started Link02Test in 6.035 seconds (JVM running for 6.718)
+25-03-08.20:47:12.103 [main            ] INFO  RuleLogic201           - link model02 RuleLogic201
+25-03-08.20:47:12.103 [main            ] INFO  RuleLogic202           - link model02 RuleLogic202
+25-03-08.20:47:12.231 [main            ] INFO  Link02Test             - 测试结果:{"age":"hi 小傅哥！"}
+25-03-08.20:47:38.841 [main            ] INFO  Link02Test             - Starting Link02Test using Java 1.8.0_311 on LAPTOP-188ICRL6 with PID 29964 (started by huangbr in E:\Java\group-buy-market\group-buy-market-app)
+25-03-08.20:47:38.842 [main            ] INFO  Link02Test             - The following 1 profile is active: "dev"
+25-03-08.20:47:39.494 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-03-08.20:47:39.498 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-03-08.20:47:39.541 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 31 ms. Found 0 Redis repository interfaces.
+25-03-08.20:47:39.807 [main            ] INFO  PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redisClientConfig' of type [edu.jnu.config.RedisClientConfig$$EnhancerBySpringCGLIB$$34bce53e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+25-03-08.20:47:40.070 [main            ] INFO  PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redis.sdk.config-edu.jnu.config.RedisClientConfigProperties' of type [edu.jnu.config.RedisClientConfigProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+25-03-08.20:47:40.595 [main            ] INFO  Version                - Redisson 3.26.0
+25-03-08.20:47:41.256 [redisson-netty-1-5] INFO  ConnectionsHolder      - 1 connections initialized for 117.72.54.141/117.72.54.141:16379
+25-03-08.20:47:41.890 [redisson-netty-1-13] INFO  ConnectionsHolder      - 5 connections initialized for 117.72.54.141/117.72.54.141:16379
+25-03-08.20:47:41.923 [main            ] INFO  PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redissonCLient' of type [org.redisson.Redisson] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+25-03-08.20:47:44.228 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-03-08.20:47:44.275 [main            ] INFO  Link02Test             - Started Link02Test in 5.742 seconds (JVM running for 6.429)
+25-03-08.20:47:44.459 [main            ] INFO  RuleLogic202           - link model02 RuleLogic202
+25-03-08.20:47:44.588 [main            ] INFO  Link02Test             - 测试结果:{"age":"hi 小傅哥！"}
+25-03-08.20:48:10.945 [main            ] INFO  Link02Test             - Starting Link02Test using Java 1.8.0_311 on LAPTOP-188ICRL6 with PID 26432 (started by huangbr in E:\Java\group-buy-market\group-buy-market-app)
+25-03-08.20:48:10.946 [main            ] INFO  Link02Test             - The following 1 profile is active: "dev"
+25-03-08.20:48:11.617 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-03-08.20:48:11.620 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-03-08.20:48:11.660 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 26 ms. Found 0 Redis repository interfaces.
+25-03-08.20:48:11.924 [main            ] INFO  PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redisClientConfig' of type [edu.jnu.config.RedisClientConfig$$EnhancerBySpringCGLIB$$2b8c95fd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+25-03-08.20:48:12.195 [main            ] INFO  PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redis.sdk.config-edu.jnu.config.RedisClientConfigProperties' of type [edu.jnu.config.RedisClientConfigProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+25-03-08.20:48:12.733 [main            ] INFO  Version                - Redisson 3.26.0
+25-03-08.20:48:13.370 [redisson-netty-1-4] INFO  ConnectionsHolder      - 1 connections initialized for 117.72.54.141/117.72.54.141:16379
+25-03-08.20:48:14.085 [redisson-netty-1-13] INFO  ConnectionsHolder      - 5 connections initialized for 117.72.54.141/117.72.54.141:16379
+25-03-08.20:48:14.120 [main            ] INFO  PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redissonCLient' of type [org.redisson.Redisson] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+25-03-08.20:48:16.445 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-03-08.20:48:16.501 [main            ] INFO  Link02Test             - Started Link02Test in 5.873 seconds (JVM running for 6.557)
+25-03-08.20:48:16.708 [main            ] INFO  RuleLogic201           - link model02 RuleLogic201
+25-03-08.20:48:16.708 [main            ] INFO  RuleLogic202           - link model02 RuleLogic202
+25-03-08.20:48:16.857 [main            ] INFO  Link02Test             - 测试结果:{"age":"hi 小傅哥！"}
