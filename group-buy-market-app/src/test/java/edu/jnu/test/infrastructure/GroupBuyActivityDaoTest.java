@@ -22,8 +22,8 @@ public class GroupBuyActivityDaoTest {
 
     @Test
     public void test_queryGroupBuyActivityList(){
-        List<GroupBuyActivity> groupBuyActivities = groupBuyActivityDao.queryGroupBuyActivityList();
-        log.info("测试结果：{}", JSON.toJSONString(groupBuyActivities));
+//        List<GroupBuyActivity> groupBuyActivities = groupBuyActivityDao.queryGroupBuyActivityList();
+//        log.info("测试结果：{}", JSON.toJSONString(groupBuyActivities));
     }
 
 

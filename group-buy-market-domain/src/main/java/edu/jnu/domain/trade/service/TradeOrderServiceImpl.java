@@ -2,11 +2,10 @@ package edu.jnu.domain.trade.service;
 
 import edu.jnu.domain.trade.adapter.repository.ITradeReposity;
 import edu.jnu.domain.trade.model.aggregate.GroupBuyOrderAggregate;
-import edu.jnu.domain.trade.model.entity.MarketPayOrderEntity;
-import edu.jnu.domain.trade.model.entity.PayActivityEntity;
-import edu.jnu.domain.trade.model.entity.PayDiscountEntity;
-import edu.jnu.domain.trade.model.entity.UserEntity;
+import edu.jnu.domain.trade.model.entity.*;
 import edu.jnu.domain.trade.model.valobj.GroupBuyProgressVO;
+import edu.jnu.domain.trade.service.facetory.TradeRuleFilterFactory;
+import edu.jnu.types.design.framework.link.model2.chain.BusinessLinkedList;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +17,8 @@ public class TradeOrderServiceImpl implements ITradeOrderService{
 
     @Resource
     private ITradeReposity tradeReposity;
+    @Resource
+    private BusinessLinkedList<TradeRuleCommandEntity, TradeRuleFilterFactory.DynamicContext, TradeRuleFilterBackEntity> tradeRuleFilter;
 
     @Override
     public MarketPayOrderEntity queryUnPayMarketPayOrderByOutTradeNo(String userId, String outTradeNo) {
@@ -34,14 +35,29 @@ public class TradeOrderServiceImpl implements ITradeOrderService{
     }
 
     @Override
-    public MarketPayOrderEntity lockMarketPayOrder(UserEntity userEntity, PayActivityEntity payActivityEntity, PayDiscountEntity payDiscountEntity) {
-        log.info("拼团交易-锁定订单 userId:{} activityId:{} goodsId:{}", userEntity.getUserId(), payActivityEntity.getActivityId(), payDiscountEntity.getGoodsId());
+    public MarketPayOrderEntity lockMarketPayOrder(UserEntity userEntity, PayActivityEntity payActivityEntity, PayDiscountEntity payDiscountEntity) throws Exception {
+        log.info("拼团交易-锁定营销优惠订单 userId:{} activityId:{} goodsId:{}", userEntity.getUserId(), payActivityEntity.getActivityId(), payDiscountEntity.getGoodsId());
+
+        // 责任链-交易规则过滤
+        TradeRuleFilterBackEntity tradeRuleFilterBackEntity = tradeRuleFilter.apply(
+                TradeRuleCommandEntity.builder()
+                        .userId(userEntity.getUserId())
+                        .activityId(payActivityEntity.getActivityId())
+                        .build(),
+                TradeRuleFilterFactory.DynamicContext.builder()
+                        .build()
+        );
+
+        // 已参与的拼团次数：用于构建数据库唯一索引使用，确保用户只能在一个活动上参与固定的次数
+        Integer userTakeOrderCount = tradeRuleFilterBackEntity.getUserTakeOrderCount();
+
 
         // 构造聚合实体对象
         GroupBuyOrderAggregate groupBuyOrderAggregate = GroupBuyOrderAggregate.builder()
                 .userEntity(userEntity)
                 .payActivityEntity(payActivityEntity)
                 .payDiscountEntity(payDiscountEntity)
+                .userTakeOrderCount(userTakeOrderCount)
                 .build();
 
         // 锁定订单：这会用户只是下单还没有支付。后续会有2个流程；支付成功、超时未支付（回退）

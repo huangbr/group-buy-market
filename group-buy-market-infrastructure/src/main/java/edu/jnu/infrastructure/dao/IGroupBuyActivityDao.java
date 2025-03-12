@@ -12,9 +12,13 @@ import java.util.List;
  */
 @Mapper
 public interface IGroupBuyActivityDao{
-    List<GroupBuyActivity> queryGroupBuyActivityList();
 
     GroupBuyActivity queryValidGroupBuyActivity(Long activityId);
+
+    GroupBuyActivity queryValidGroupBuyActivityId(Long activityId);
+
+    GroupBuyActivity queryGroupBuyActivityByActivityId(Long activityId);
+
 
 }
 

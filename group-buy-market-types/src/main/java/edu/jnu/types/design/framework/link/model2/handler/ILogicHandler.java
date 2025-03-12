@@ -5,13 +5,12 @@ package edu.jnu.types.design.framework.link.model2.handler;
  */
 public interface ILogicHandler<T,D,R> {
 
-    // 跳转到下一节点
+    // 返回null表示将进入下一个链结点(此函数本身不进行节点跳转)
     default R next(T requestParameter, D dynamicContext){
         return null;
     }
 
     // 执行本节点的业务逻辑
     R apply(T requestParameter, D dynamicContext) throws Exception;
-
 
 }

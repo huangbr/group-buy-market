@@ -43,6 +43,10 @@
             <groupId>edu.jnu</groupId>
             <artifactId>group-buy-market-types</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-annotations-api</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

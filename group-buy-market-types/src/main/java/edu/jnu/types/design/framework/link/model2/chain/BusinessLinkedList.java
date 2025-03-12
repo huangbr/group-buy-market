@@ -15,7 +15,7 @@ public class BusinessLinkedList<T,D,R> extends LinkedList<ILogicHandler<T,D,R>> 
     public R apply(T requestParameter, D dynamicContext) throws Exception {
 
         Node<ILogicHandler<T,D,R>> current = this.first;
-        // 遍历的过程会以 apply 是否为空和链路是否走到最后来判断。apply 为空则表示当前ILogicHandler实现的节点的业务流程为空，放行到下一个节点。
+        // 遍历的过程会以 apply 是否为空和链路是否走到最后来判断。apply为空则表示当前ILogicHandler实现的节点的业务流程执行结束，放行到下一个节点。
         do{
             ILogicHandler<T,D,R> itemHandler = current.item;
             R apply = itemHandler.apply(requestParameter, dynamicContext);

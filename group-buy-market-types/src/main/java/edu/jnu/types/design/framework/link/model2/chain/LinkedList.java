@@ -57,7 +57,7 @@ public class LinkedList<E> implements ILink<E> {
         size++;
     }
 
-    // 默认头插
+    // 默认尾插
     @Override
     public boolean add(E e) {
         linkLast(e);

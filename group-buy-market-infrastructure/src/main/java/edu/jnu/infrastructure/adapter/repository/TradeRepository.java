@@ -2,16 +2,17 @@ package edu.jnu.infrastructure.adapter.repository;
 
 import edu.jnu.domain.trade.adapter.repository.ITradeReposity;
 import edu.jnu.domain.trade.model.aggregate.GroupBuyOrderAggregate;
-import edu.jnu.domain.trade.model.entity.MarketPayOrderEntity;
-import edu.jnu.domain.trade.model.entity.PayActivityEntity;
-import edu.jnu.domain.trade.model.entity.PayDiscountEntity;
-import edu.jnu.domain.trade.model.entity.UserEntity;
+import edu.jnu.domain.trade.model.entity.*;
 import edu.jnu.domain.trade.model.valobj.GroupBuyProgressVO;
 import edu.jnu.domain.trade.model.valobj.TradeOrderStatusEnumVO;
+import edu.jnu.infrastructure.dao.IGroupBuyActivityDao;
 import edu.jnu.infrastructure.dao.IGroupBuyOrderDao;
 import edu.jnu.infrastructure.dao.IGroupBuyOrderListDao;
+import edu.jnu.infrastructure.dao.po.GroupBuyActivity;
 import edu.jnu.infrastructure.dao.po.GroupBuyOrder;
 import edu.jnu.infrastructure.dao.po.GroupBuyOrderList;
+import edu.jnu.types.common.Constants;
+import edu.jnu.types.enums.ActivityStatusEnumVO;
 import edu.jnu.types.enums.ResponseCode;
 import edu.jnu.types.exception.AppException;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -28,9 +29,10 @@ public class TradeRepository implements ITradeReposity {
 
     @Resource
     private IGroupBuyOrderDao groupBuyOrderDao;
-
     @Resource
     private IGroupBuyOrderListDao groupBuyOrderListDao;
+    @Resource
+    private IGroupBuyActivityDao groupBuyActivityDao;
 
 
     // 根据外部订单编号查询拼团订单明细
@@ -64,6 +66,8 @@ public class TradeRepository implements ITradeReposity {
     }
 
 
+
+
     // 锁单
     @Transactional(timeout = 500)
     @Override
@@ -72,6 +76,7 @@ public class TradeRepository implements ITradeReposity {
         UserEntity userEntity = groupBuyOrderAggregate.getUserEntity();
         PayActivityEntity payActivityEntity = groupBuyOrderAggregate.getPayActivityEntity();
         PayDiscountEntity payDiscountEntity = groupBuyOrderAggregate.getPayDiscountEntity();
+        Integer userTakeOrderCount = groupBuyOrderAggregate.getUserTakeOrderCount();
 
         // 1.更新GrouyBuyOrder表
         // 判断是否有团：teamId为空则新团，teamId不空则老团
@@ -120,6 +125,8 @@ public class TradeRepository implements ITradeReposity {
                 .deductionPrice(payDiscountEntity.getDeductionPrice())
                 .status(TradeOrderStatusEnumVO.CREATE.getCode())
                 .outTradeNo(payDiscountEntity.getOutTradeNo())
+                // 构建bizId唯一值；活动id_用户id_参与次数累加
+                .bizId(payActivityEntity.getActivityId()+ Constants.UNDERLINE + userEntity.getUserId() + Constants.UNDERLINE + (userTakeOrderCount+1))
                 .build();
         try{
             groupBuyOrderListDao.insert(groupBuyOrderList);
@@ -133,5 +140,34 @@ public class TradeRepository implements ITradeReposity {
                 .tradeOrderStatusEnumVO(TradeOrderStatusEnumVO.CREATE)
                 .build();
     }
+
+
+    @Override
+    public GroupBuyActivityEntity queryGroupBuyActivityEntityByActivityId(Long activityId) {
+        GroupBuyActivity groupBuyActivity = groupBuyActivityDao.queryGroupBuyActivityByActivityId(activityId);
+        return GroupBuyActivityEntity.builder()
+                .activityId(groupBuyActivity.getActivityId())
+                .activityName(groupBuyActivity.getActivityName())
+                .discountId(groupBuyActivity.getDiscountId())
+                .groupType(groupBuyActivity.getGroupType())
+                .takeLimitCount(groupBuyActivity.getTakeLimitCount())
+                .target(groupBuyActivity.getTarget())
+                .validTime(groupBuyActivity.getValidTime())
+                .status(ActivityStatusEnumVO.valueOf(groupBuyActivity.getStatus()))
+                .startTime(groupBuyActivity.getStartTime())
+                .endTime(groupBuyActivity.getEndTime())
+                .tagId(groupBuyActivity.getTagId())
+                .tagScope(groupBuyActivity.getTagScope())
+                .build();
+    }
+
+    @Override
+    public Integer queryOrderCountByActivityId(Long activityId, String userId) {
+        GroupBuyOrderList groupBuyOrderListReq = new GroupBuyOrderList();
+        groupBuyOrderListReq.setActivityId(activityId);
+        groupBuyOrderListReq.setUserId(userId);
+        return groupBuyOrderListDao.queryOrderCountByActivityId(groupBuyOrderListReq);
+    }
+
 
 }

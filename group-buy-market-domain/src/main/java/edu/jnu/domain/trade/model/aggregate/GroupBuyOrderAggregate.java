@@ -24,5 +24,6 @@ public class GroupBuyOrderAggregate {
     private PayActivityEntity payActivityEntity;
     /** 支付优惠实体对象 */
     private PayDiscountEntity payDiscountEntity;
-
+    /** 用户已参与的拼团次数 */
+    private Integer userTakeOrderCount;
 }
