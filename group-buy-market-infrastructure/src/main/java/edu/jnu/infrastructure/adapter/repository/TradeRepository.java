@@ -15,6 +15,7 @@ import edu.jnu.infrastructure.dao.po.GroupBuyActivity;
 import edu.jnu.infrastructure.dao.po.GroupBuyOrder;
 import edu.jnu.infrastructure.dao.po.GroupBuyOrderList;
 import edu.jnu.infrastructure.dao.po.NotifyTask;
+import edu.jnu.infrastructure.dcc.DCCService;
 import edu.jnu.types.common.Constants;
 import edu.jnu.types.enums.ActivityStatusEnumVO;
 import edu.jnu.types.enums.GroupBuyOrderEnumVO;
@@ -27,6 +28,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -42,6 +45,8 @@ public class TradeRepository implements ITradeReposity {
     private IGroupBuyActivityDao groupBuyActivityDao;
     @Resource
     private INotifyTaskDao notifyTaskDao;
+    @Resource
+    private DCCService dccService;
 
 
     // 根据外部订单编号查询拼团订单明细
@@ -95,6 +100,13 @@ public class TradeRepository implements ITradeReposity {
             // 新团
             teamId = RandomStringUtils.randomNumeric(8); // 替代公司里用的雪花算法UUID
 
+            // 日期处理
+            Date validStartTime = new Date();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(validStartTime);
+            calendar.add(Calendar.MINUTE, payActivityEntity.getValidTime());
+            Date validEndTime = calendar.getTime();
+
             // 构建拼团订单
             GroupBuyOrder groupBuyOrder = GroupBuyOrder.builder()
                     .teamId(teamId)
@@ -107,6 +119,8 @@ public class TradeRepository implements ITradeReposity {
                     .targetCount(payActivityEntity.getTargetCount())
                     .completeCount(0)
                     .lockCount(1)
+                    .validStartTime(validStartTime)
+                    .validEndTime(validEndTime)
                     //.status(0)    默认
                     .build();
 
@@ -190,6 +204,8 @@ public class TradeRepository implements ITradeReposity {
                 .completeCount(groupBuyOrder.getCompleteCount())
                 .lockCount(groupBuyOrder.getLockCount())
                 .status(GroupBuyOrderEnumVO.valueOf(groupBuyOrder.getStatus()))
+                .validStartTime(groupBuyOrder.getValidStartTime())
+                .validEndTime(groupBuyOrder.getValidEndTime())
                 .build();
     }
 
@@ -205,6 +221,7 @@ public class TradeRepository implements ITradeReposity {
         GroupBuyOrderList groupBuyOrderListReq = new GroupBuyOrderList();
         groupBuyOrderListReq.setUserId(userEntity.getUserId());
         groupBuyOrderListReq.setOutTradeNo(tradePaySuccessEntity.getOutTradeNo());
+        groupBuyOrderListReq.setOutTradeTime(tradePaySuccessEntity.getOutTradeTime());
         int updateOrderListStatusCount = groupBuyOrderListDao.updateOrderStatus2COMPLETE(groupBuyOrderListReq);
         if(1 != updateOrderListStatusCount){
             throw new AppException(ResponseCode.UPDATE_ZERO);
@@ -243,5 +260,10 @@ public class TradeRepository implements ITradeReposity {
             notifyTaskDao.insert(notifyTask);
 
         }
+    }
+
+    @Override
+    public boolean isSCBlackIntercept(String source, String channel) {
+        return dccService.isSCBlackIntercept(source, channel);
     }
 }

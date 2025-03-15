@@ -9,28 +9,28 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 /**
- * 拼团组队实体对象
+ * 拼团交易结算规则反馈
  */
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class GroupBuyTeamEntity {
-    /** 拼团组队Id */
+public class TradeSettlementRuleFilterBackEntity {
+    /** 拼单组队ID */
     private String teamId;
-    /** 活动Id */
+    /** 活动ID */
     private Long activityId;
-    /** 组队目标人数 */
+    /** 目标数量 */
     private Integer targetCount;
-    /** 组队已完成人数 */
+    /** 完成数量 */
     private Integer completeCount;
-    /** 组队锁定人数 */
+    /** 锁单数量 */
     private Integer lockCount;
-    /** 拼团活动状态枚举 （0-拼单中、1-完成、2-失败） */
+    /** 状态（0-拼单中、1-完成、2-失败） */
     private GroupBuyOrderEnumVO status;
-    /** 拼团开始时间：拼团队伍的创建时间 */
+    /** 拼团队伍的生效时间 */
     private Date validStartTime;
-    /** 拼团结束时间：拼团队伍的创建时间 + 拼团队伍的有效时长 */
+    /** 拼团队伍的失效时间 */
     private Date validEndTime;
+
 }

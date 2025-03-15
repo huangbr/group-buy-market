@@ -1,7 +1,11 @@
 package edu.jnu.infrastructure.dcc;
 
 import edu.jnu.types.annotations.DCCValue;
+import edu.jnu.types.common.Constants;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * 动态配置服务
@@ -22,6 +26,12 @@ public class DCCService {
     @DCCValue("cutRange:100")
     private String cutRange;
 
+    /**
+     * SC黑名单拦截：拦截source为s02, channel为c02的渠道
+     */
+    @DCCValue("scBlacklist:s02c02")
+    private String scBlackList;
+
     // 是否降级拦截
     public boolean isDowngradeSwitch(){
         return "1".equals(downgradeSwitch);
@@ -40,4 +50,9 @@ public class DCCService {
         return false;
     }
 
+    // 判断黑名单拦截渠道：True拦截，False放行
+    public boolean isSCBlackIntercept(String source, String channel){
+        List<String> list = Arrays.asList(scBlackList.split(Constants.SPLIT));
+        return list.contains(source+channel);
+    }
 }

@@ -13,7 +13,7 @@ import edu.jnu.domain.trade.model.valobj.GroupBuyProgressVO;
 
 public interface ITradeReposity {
 
-    // 查询拼团订单：查询外部的交易单号是否为拼团锁单订单
+    // 查询拼团订单：根据外部交易单号查询是否为拼团订单
     MarketPayOrderEntity queryMarketPayOrderEntityByOutTradeNo(String userId, String outTradeNo);
 
     // 锁单
@@ -33,5 +33,9 @@ public interface ITradeReposity {
 
     // 拼团交易结算
     void settlementMarketPayOrder(GroupBuyTeamSettlementAggregate groupBuyTeamSettlementAggregate);
+
+    // 是否为需要拦截的黑名单渠道
+    boolean isSCBlackIntercept(String source, String channel);
+
 
 }

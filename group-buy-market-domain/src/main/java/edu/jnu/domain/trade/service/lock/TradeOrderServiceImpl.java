@@ -5,7 +5,7 @@ import edu.jnu.domain.trade.model.aggregate.GroupBuyOrderAggregate;
 import edu.jnu.domain.trade.model.entity.*;
 import edu.jnu.domain.trade.model.valobj.GroupBuyProgressVO;
 import edu.jnu.domain.trade.service.ITradeLockOrderService;
-import edu.jnu.domain.trade.service.lock.facetory.TradeRuleFilterFactory;
+import edu.jnu.domain.trade.service.lock.facetory.TradeLockRuleFilterFactory;
 import edu.jnu.types.design.framework.link.model2.chain.BusinessLinkedList;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ public class TradeOrderServiceImpl implements ITradeLockOrderService {
     @Resource
     private ITradeReposity tradeReposity;
     @Resource
-    private BusinessLinkedList<TradeRuleCommandEntity, TradeRuleFilterFactory.DynamicContext, TradeRuleFilterBackEntity> tradeRuleFilter;
+    private BusinessLinkedList<TradeLockRuleCommandEntity, TradeLockRuleFilterFactory.DynamicContext, TradeLockRuleFilterBackEntity> tradeLockRuleFilter;
 
     @Override
     public MarketPayOrderEntity queryUnPayMarketPayOrderByOutTradeNo(String userId, String outTradeNo) {
@@ -40,12 +40,12 @@ public class TradeOrderServiceImpl implements ITradeLockOrderService {
         log.info("拼团交易-锁定营销优惠订单 userId:{} activityId:{} goodsId:{}", userEntity.getUserId(), payActivityEntity.getActivityId(), payDiscountEntity.getGoodsId());
 
         // 1.责任链-交易规则过滤
-        TradeRuleFilterBackEntity tradeRuleFilterBackEntity = tradeRuleFilter.apply(
-                TradeRuleCommandEntity.builder()
+        TradeLockRuleFilterBackEntity tradeRuleFilterBackEntity = tradeLockRuleFilter.apply(
+                TradeLockRuleCommandEntity.builder()
                         .userId(userEntity.getUserId())
                         .activityId(payActivityEntity.getActivityId())
                         .build(),
-                TradeRuleFilterFactory.DynamicContext.builder()
+                TradeLockRuleFilterFactory.DynamicContext.builder()
                         .build()
         );
 

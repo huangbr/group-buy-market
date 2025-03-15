@@ -10,6 +10,6 @@ import edu.jnu.domain.trade.model.entity.TradePaySuccessEntity;
 public interface ITradeSettlementOrderService {
 
     // 营销订单的交易结算
-    TradePaySettlementEntity settlementMarketPayOrder(TradePaySuccessEntity tradePaySuccessEntity);
+    TradePaySettlementEntity settlementMarketPayOrder(TradePaySuccessEntity tradePaySuccessEntity) throws Exception;
 
 }

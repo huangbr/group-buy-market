@@ -8,23 +8,21 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 /**
- * 交易-订单支付成功实体
+ * 拼团交易结算规则命令
  */
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TradePaySuccessEntity {
-    /** 来源 */
-    private String source;
+public class TradeSettlementRuleCommandEntity {
     /** 渠道 */
+    private String source;
+    /** 来源 */
     private String channel;
-    /** 用户Id */
+    /** 用户ID */
     private String userId;
     /** 外部交易单号 */
     private String outTradeNo;
     /** 外部交易时间 */
     private Date outTradeTime;
-
-
 }
