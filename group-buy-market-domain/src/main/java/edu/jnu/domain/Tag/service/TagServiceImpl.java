@@ -31,6 +31,15 @@ public class TagServiceImpl implements ITagService{
                 add("huangbr");
                 add("xiaofuge");
                 add("liergou");
+                add("xfg01");
+                add("xfg02");
+                add("xfg03");
+                add("xfg04");
+                add("xfg05");
+                add("xfg06");
+                add("xfg07");
+                add("xfg08");
+                add("xfg09");
             }
         };
 

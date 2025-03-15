@@ -13,7 +13,12 @@ import org.apache.commons.lang3.StringUtils;
 @AllArgsConstructor
 @NoArgsConstructor
 public enum TagScopeEnumVO {
-
+    /**
+     * 如果拼团活动默认是可见的（visible == true），那么无论用户是否在人群范围内，活动都应该是可见的;
+     * 如果拼团活动默认不可见（visible == false），则只有当用户在人群范围内时，活动才可见。
+     * 如果拼团活动默认是可参与的（enable == true），那么无论用户是否在人群范围内，活动都应该是可参与的。
+     * 如果拼团活动默认不可参与（enable == false），则只有当用户在人群范围内时，活动才可参与。
+     */
     INVISIBLE_DISABLE("1", "用户不可见不可参与"),
     VISIBLE_DISABLE("2", "用户可见不可参与"),
     VISIBLE_ENABLE("3", "用户可见可参与");

@@ -21,4 +21,13 @@ public interface IGroupBuyOrderDao {
 
     // 查询拼团进度
     GroupBuyOrder queryGroupBuyProgress(String teamId);
+
+    // 查询拼团队伍
+    GroupBuyOrder queryGroupBuyTeamByTeamId(String Id);
+
+    // 增加拼团支付完成人数
+    int updateAddCompleteCount(String teamId);
+
+    // 更新订单状态为已完成
+    int updateOrderStatus2COMPLETE(String teamId);
 }

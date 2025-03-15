@@ -15,7 +15,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor // 自动生成一个包含所有字段的构造函数
 @NoArgsConstructor // 自动生成一个无参构造函数
 public class MarketProductEntity {
-
+    /** 活动ID */
+    private Long activityId;
     /** 用户ID */
     private String userId;
     /** 商品ID */

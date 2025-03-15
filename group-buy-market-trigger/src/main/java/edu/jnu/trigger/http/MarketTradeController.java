@@ -14,7 +14,7 @@ import edu.jnu.domain.trade.model.entity.PayActivityEntity;
 import edu.jnu.domain.trade.model.entity.PayDiscountEntity;
 import edu.jnu.domain.trade.model.entity.UserEntity;
 import edu.jnu.domain.trade.model.valobj.GroupBuyProgressVO;
-import edu.jnu.domain.trade.service.ITradeOrderService;
+import edu.jnu.domain.trade.service.ITradeLockOrderService;
 import edu.jnu.types.enums.ResponseCode;
 import edu.jnu.types.exception.AppException;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +34,7 @@ public class MarketTradeController implements IMarketTradeService {
     private IIndexGroupBuyMarketService indexGroupBuyMarketService;
 
     @Resource
-    private ITradeOrderService tradeOrderService;
+    private ITradeLockOrderService tradeOrderService;
 
     @Override
     public Response<LockMarketPayOrderResponseDTO> lockMarketPayOrder(LockMarketPayOrderRequestDTO lockMarketPayOrderRequestDTO) {
@@ -99,6 +99,15 @@ public class MarketTradeController implements IMarketTradeService {
                     .source(source)
                     .channel(channel)
                     .build());
+
+            // 人群限定
+            if (!trialBalanceEntity.getIsVisible() || !trialBalanceEntity.getIsEnable()){
+                return Response.<LockMarketPayOrderResponseDTO>builder()
+                        .code(ResponseCode.E0007.getCode())
+                        .info(ResponseCode.E0007.getInfo())
+                        .build();
+            }
+
             GroupBuyActivityDiscountVO groupBuyActivityDiscountVO = trialBalanceEntity.getGroupBuyActivityDiscountVO();
 
 

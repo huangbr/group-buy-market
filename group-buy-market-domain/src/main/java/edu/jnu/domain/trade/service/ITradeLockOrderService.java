@@ -6,7 +6,7 @@ import edu.jnu.domain.trade.model.entity.PayDiscountEntity;
 import edu.jnu.domain.trade.model.entity.UserEntity;
 import edu.jnu.domain.trade.model.valobj.GroupBuyProgressVO;
 
-public interface ITradeOrderService {
+public interface ITradeLockOrderService {
 
     // 查询未被支付的订单（已锁单，但未支付）
     MarketPayOrderEntity queryUnPayMarketPayOrderByOutTradeNo(String userId, String outTradeNo);
